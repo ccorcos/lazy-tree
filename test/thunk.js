@@ -26,3 +26,16 @@ test('accepts extra args', t => {
     { state: 1, other: 2}
   )
 })
+
+test('thunk of a thunk', t => {
+  const f1 = render(1)
+  const f2 = lazy(render(1))()
+  t.is(
+    f1.fn,
+    f2.fn
+  )
+  t.deepEqual(
+    f1.args,
+    f2.args
+  )
+})
