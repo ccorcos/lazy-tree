@@ -1,6 +1,6 @@
 {
   "name": "lazy-tree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An implementation for lazily reducing values over trees",
   "main": "src/index.js",
   "scripts": {
@@ -29,8 +29,14 @@
       "guard-for-in": 0,
       "no-use-before-define": 0,
       "camelcase": 0,
-      "comma-dangle": [2, "always-multiline"],
-      "operator-linebreak": [2, "before"]
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "operator-linebreak": [
+        2,
+        "before"
+      ]
     }
   },
   "babel": {
