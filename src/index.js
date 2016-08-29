@@ -36,7 +36,7 @@ export const thunk = eq => fn => (...args) => {
     _fn.fn = fn
     _fn.args = args
   }
-  _fn.equals = (g) => g
+  _fn.equals = g => g
                    && g.__type === 'thunk'
                    && _fn.fn === g.fn
                    && g.args
@@ -53,10 +53,9 @@ export function reduce(fn, prev, next) {
   if (next.__type === 'thunk') {
     // if the our tree is lazy
     return reduceThunk(fn, prev, next)
-  } else {
-    // if next is a node
-    return reduceNode(fn, prev, next)
   }
+  // if next is a node
+  return reduceNode(fn, prev, next)
 }
 
 function reduceThunk(fn, prev, thunk) {
@@ -64,15 +63,14 @@ function reduceThunk(fn, prev, thunk) {
     // if the previous thunk equals this thunk, then the resulting computation
     // is the same
     return prev
-  } else {
-    // otherwise, evaluate the thunk to get the tree
-    const node = thunk()
-    // reduce on the node and add this thunk to the computation
-    const computation = reduceNode(fn, prev, node)
-    return {
-      ...computation,
-      thunk,
-    }
+  }
+  // otherwise, evaluate the thunk to get the tree
+  const node = thunk()
+  // reduce on the node and add this thunk to the computation
+  const computation = reduceNode(fn, prev, node)
+  return {
+    ...computation,
+    thunk,
   }
 }
 
@@ -94,14 +92,13 @@ function reduceNode(fn, prev, node) {
       result,
       children,
     }
-  } else {
-    // if there are no children then the result is the node's value
-    return {
-      __type: 'computation',
-      node,
-      result: node.value,
-      children: [],
-    }
+  }
+  // if there are no children then the result is the node's value
+  return {
+    __type: 'computation',
+    node,
+    result: node.value,
+    children: [],
   }
 }
 

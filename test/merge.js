@@ -1,5 +1,5 @@
 import test from 'ava'
-import { merge } from '../src/index'
+import {merge} from '../src/index'
 
 test('equal size lists', t => {
   t.deepEqual(

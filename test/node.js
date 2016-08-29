@@ -7,7 +7,7 @@ test('value and children', t => {
     {
       __type: 'node',
       value: {a: 1},
-      children: ['b', 'c']
+      children: ['b', 'c'],
     }
   )
 })
@@ -18,7 +18,7 @@ test('just value', t => {
     {
       __type: 'node',
       value: {a: 1},
-      children: undefined
+      children: undefined,
     }
   )
 })
@@ -29,7 +29,7 @@ test('just children', t => {
     {
       __type: 'node',
       value: undefined,
-      children: ['b', 'c']
+      children: ['b', 'c'],
     }
   )
 })
