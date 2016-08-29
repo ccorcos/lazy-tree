@@ -17,7 +17,7 @@ const render2 = lazy(x => {
 })
 
 const render3 = lazy(x => {
-  return node({x}, [
+  return node([
     render1(x),
     render2(Math.abs(x)),
   ])
@@ -42,7 +42,7 @@ test('reduces values appropriately', t => {
   )
   t.is(
     reduce(reducer, undefined, render3(1)).result.x,
-    8
+    7
   )
 })
 
@@ -58,8 +58,8 @@ test('lazily reduces values', t => {
 test('recursively lazily reduces values', t => {
   calls = 0
   const c1 = reduce(reducer, undefined, render3(1))
-  t.is(calls, 4)
+  t.is(calls, 3)
   // render2 is still the same
   reduce(reducer, c1, render3(-1))
-  t.is(calls, 6)
+  t.is(calls, 4)
 })
