@@ -29,6 +29,7 @@ function parseArgs(args) {
 export const thunk = eq => fn => (...args) => {
   const _fn = (...more) => fn.apply(null, args.concat(more))
   _fn.__type = 'thunk'
+  _fn.eq = eq
   if (fn.__type === 'thunk') {
     _fn.fn = fn.fn
     _fn.args = fn.args.concat(args)
@@ -39,7 +40,8 @@ export const thunk = eq => fn => (...args) => {
   _fn.equals = g => g
                    && g.__type === 'thunk'
                    && _fn.fn === g.fn
-                   && g.args
+                   && _fn.eq === g.eq
+                   && _fn.args.length === g.args.length
                    && eq(_fn.args, g.args)
   return _fn
 }
